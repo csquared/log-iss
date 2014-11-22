@@ -62,3 +62,10 @@ $ heroku drains:add -r $DEPLOY https://l2met.com/...
 $ git push $DEPLOY master
 $ echo "64 <13>1 2013-06-07T13:17:49.468822+00:00 host heroku web.7 - - hi" | curl -v -u syslog:<generated token> -H "Content-Type: application/logplex-1" --data-binary @/dev/stdin https://log-iss-$DEPLOY.herokuapp.com/logs
 ```
+
+## Sending encrypted logs to Papertrail
+Set a PEMFILE to trigger TLS logging.
+
+```bash
+$ heroku config:set -r $DEPLOY PEMFILE=./vendor/papertrail-bundle.pem
+```
